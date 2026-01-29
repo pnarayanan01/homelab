@@ -1,0 +1,17 @@
+[Unit]
+Description=ComfyUI
+After=network.target
+
+[Service]
+Type=simple
+User=prasanna
+WorkingDirectory=/home/prasanna/ComfyUI
+Environment="HSA_ENABLE_SDMA=0"
+Environment="HSA_USE_SVM=0"
+Environment="TORCH_ROCM_AOTRITON_ENABLE_EXPERIMENTAL=1"
+Environment="PYTORCH_HIP_ALLOC_CONF=expandable_segments:True"
+ExecStart=/home/prasanna/ComfyUI/venv/bin/python main.py --listen 0.0.0.0 --port 8188
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
