@@ -1,0 +1,39 @@
+{
+  "// INSTRUCTIONS": "Copy this file to ~/.openclaw/openclaw.json and fill in your secrets",
+
+  "agent": {
+    "model": "anthropic/claude-opus-4-5"
+  },
+
+  "gateway": {
+    "port": 18789,
+    "bind": "lan",
+    "auth": {
+      "mode": "token",
+      "token": "<YOUR_GATEWAY_TOKEN>"
+    }
+  },
+
+  "models": {
+    "anthropic": {
+      "auth": "oauth",
+      "token": "<YOUR_ANTHROPIC_PRO_TOKEN>"
+    }
+  },
+
+  "channels": {
+    "telegram": {
+      "botToken": "<YOUR_TELEGRAM_BOT_TOKEN>",
+      "dmPolicy": "pairing"
+    }
+  },
+
+  "session": {
+    "memory": {
+      "hooks": true
+    },
+    "safeguard": {
+      "compaction": true
+    }
+  }
+}
