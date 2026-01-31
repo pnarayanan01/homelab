@@ -18,6 +18,12 @@ graph TB
             comfyui["ComfyUI\nImage Generation"]
         end
 
+        subgraph ubuntupn["🦞 Dell Laptop — Ubuntu · 192.168.68.82"]
+            direction LR
+            openclaw["OpenClaw Gateway\nAI Assistant Control Plane"]
+            telegram["Telegram Bot\nChat Channel"]
+        end
+
         subgraph proxmox["🖥️ HP EliteDesk 800 G4 — Proxmox VE · 192.168.68.50"]
             direction LR
             pihole["Pi-hole\nDNS · .51"]
@@ -25,7 +31,7 @@ graph TB
             ha["Home Assistant\nZigbee · Smart Home · .52"]
         end
 
-        subgraph nas["💾 TerraMaster F4-424 Max — Unraid · 192.168.68.81"]
+        subgraph nas["💾 TerraMaster F4-424 Max — Unraid · 192.168.68.72"]
             direction LR
             nfs["NFS Shares"]
             storage["16 TB Raw Storage\n2x 8TB WD HDDs"]
@@ -33,11 +39,15 @@ graph TB
     end
 
     webui --> ollama
+    openclaw -- "SSH · AI inference" --> strix
+    openclaw -- "SSH · VM/CT mgmt" --> proxmox
+    openclaw -- "SMB · File storage" --> nas
     strix -- "NFS Mount" --> nfs
     proxmox -- "NFS Mount" --> nfs
     media -- "Downloads & Media" --> storage
 
     style strix fill:#1a1a2e,stroke:#e94560,color:#fff
+    style ubuntupn fill:#1a1a2e,stroke:#f5a623,color:#fff
     style proxmox fill:#1a1a2e,stroke:#0f3460,color:#fff
     style nas fill:#1a1a2e,stroke:#16213e,color:#fff
     style network fill:#0d1117,stroke:#30363d,color:#fff
